@@ -23,6 +23,17 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/all", (req, res) => {
+  Adopter.getAll()
+    .then((adopters) => {
+      res.status(200).json(adopters);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: "Error retrieving adopters" });
+    });
+});
+
 router.get("/:id", (req, res) => {
   Adopter.findById(req.params.id)
     .then((adopter) => {

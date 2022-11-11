@@ -9,6 +9,7 @@ module.exports = {
   remove,
   update,
   findDogs,
+  getAll,
 };
 
 function find(query) {
@@ -21,6 +22,9 @@ function find(query) {
     .offset(offset);
 
   return rows;
+}
+function getAll() {
+  return db("adopters");
 }
 
 function findById(id) {
