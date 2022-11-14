@@ -1,14 +1,10 @@
 const express = require("express");
 
-const server = express();
+const Fares = require("./fares-models");
 
-server.use(express.json());
+const router = express.Router();
 
-const Fares = require("./api/fares/fares-model");
-
-// Fares
-
-server.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   Fares.find()
     .then((fares) => {
       if (fares) {
@@ -22,6 +18,4 @@ server.get("/", (req, res) => {
     });
 });
 
-server.listen(4000, () => {
-  console.log("\n*** Server Running on http://localhost:4000 ***\n");
-});
+module.exports = router;

@@ -1,24 +1,10 @@
 exports.up = function (knex) {
-  return knex.schema
-    .createTable("adopters", (tbl) => {
-      tbl.increments();
-      tbl.string("name").notNullable();
-      tbl.string("email").unique().notNullable();
-    })
-    .createTable("dogs", (tbl) => {
-      tbl.increments();
-      tbl.string("name").notNullable();
-      tbl.float("weight").notNullable();
-      tbl
-        .integer("adopter_id")
-        .unsigned()
-        .references("id")
-        .inTable("adopters")
-        .onDelete("CASCADE")
-        .onUpdate("CASCADE");
-    });
+  return knex.schema.createTable("fares", (tbl) => {
+    tbl.increments();
+    tbl.integer("order").notNullable();
+  });
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropTableIfExists("dogs").dropTableIfExists("adopters");
+  return knex.schema.dropTableIfExists("fares");
 };
